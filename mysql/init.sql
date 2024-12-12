@@ -14,6 +14,24 @@ CREATE TABLE post (
   `reg_date` DATETIME NOT NULL
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP DATABASE IF EXISTS user_management;
+CREATE DATABASE user_management
+       DEFAULT CHARACTER SET utf8mb4
+       DEFAULT COLLATE utf8mb4_unicode_ci;
+
+USE user_management;
+
+CREATE TABLE users (
+       username varchar(50) PRIMARY KEY NOT NULL,
+       password varchar(100) NOT NULL,
+       fullname VARCHAR(100) NOT NULL,
+       email VARCHAR(100) NOT NULL,
+       phone VARCHAR(10),
+       phone2 VARCHAR(10) NOT NULL,
+       phone3 VARCHAR(10) NOT NULL,
+       gender CHAR(1) CHECK(GENDER IN ('m', 'f'))
+);
+
 CHANGE MASTER TO MASTER_HOST='10.10.30.30', MASTER_USER='root', MASTER_PASSWORD='root', MASTER_LOG_FILE='mysql-bin.000003', MASTER_LOG_POS=157;
 
 COMMIT;
